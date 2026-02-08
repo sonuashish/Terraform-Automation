@@ -21,12 +21,6 @@ pipeline {
             }
         }
 
-        stage ("terraform validate") {
-            steps {
-                sh ("terraform validate") 
-            }
-        }
-
         stage ("Action") {
             steps {
                 script {
