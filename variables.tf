@@ -1,5 +1,5 @@
 variable "aws_region" {
-       description = "The AWS region to create things in." 
+       description = "The AWS region to create resources in." 
        default     = "ap-south-1" 
 }
 
@@ -10,21 +10,21 @@ variable "key_name" {
 
 variable "instance_type" { 
     description = "instance type for ec2" 
-    default     =  "t2.micro" 
+    default     =  "t3.micro" 
 }
 
 variable "security_group" { 
     description = "Name of security group" 
-    default     = "jenkins-sgroup-dec-2021" 
+    default     = "jenkins-sgroup-feb-2026" 
 }
 
 variable "tag_name" { 
     description = "Tag Name of for Ec2 instance" 
-    default     = "my-ec2-instance" 
+    default     = "project-terraform-automation-ec2-instance" 
 } 
 variable "ami_id" { 
     description = "AMI for Ubuntu Ec2 instance" 
-    default     = "ami-07ffb2f4d65357b42" 
+    default     = "ami-019715e0d74f695be" 
 }
 variable "versioning" {
     type        = bool

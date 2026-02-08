@@ -4,20 +4,26 @@ pipeline {
     parameters {
         choice(
             name: 'ACTION',
-            choices: ['plan', 'apply'],
+            choices: ['plan', 'apply', 'destroy'],
             description: 'Select the action to perform'
         )
     }
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ygminds73/Terraform-Automation.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sonuashish/Terraform-Automation.git']])
             }
         }
     
         stage ("terraform init") {
             steps {
                 sh ("terraform init -reconfigure") 
+            }
+        }
+
+        stage ("terraform validate") {
+            steps {
+                sh ("terraform validate") 
             }
         }
 

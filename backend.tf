@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket = "young-minds-app-project-terraform-state"
+    bucket = "terraform-automation-project-terraform-state"
     key = "main"
-    region = "us-east-1"
-    dynamodb_table = "my-dynamodb-table"
+    region = "ap-south-1"
+    dynamodb_table = "terraform-state-file-dynamodb-table"
   }
 }
