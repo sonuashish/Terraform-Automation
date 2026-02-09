@@ -10,10 +10,22 @@ resource "aws_vpc" "main" {
   }
 }
 
+resource "aws_subnet" "main_subnet" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "172.16.1.0/24"
+  availability_zone = "ap-south-1a"
+
+  tags = {
+    Name = "main-subnet"
+  }
+}
+
+
 #Create security group with firewall rules
 resource "aws_security_group" "jenkins-sg-2026" {
   name        = var.security_group
   description = "security group for Ec2 instance"
+  vpc_id = aws_vpc.main.id
 
   ingress {
     from_port   = 8080
@@ -46,6 +58,7 @@ resource "aws_instance" "myFirstInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
+  subnet_id = aws_subnet.main_subnet.id
   vpc_security_group_ids = [aws_security_group.jenkins-sg-2026.id]
 
   # Set root volume size to 20 GB
@@ -63,6 +76,7 @@ resource "aws_instance" "myFirstInstance" {
 # Create Elastic IP address
 resource "aws_eip" "myFirstInstance" {
  // vpc      = true
+  domain = "vpc"
   instance = aws_instance.myFirstInstance.id
 tags= {
     Name = "my_elastic_ip"

@@ -6,3 +6,4 @@ terraform {
     dynamodb_table = "terraform-state-file-dynamodb-table"
   }
 }
+  
